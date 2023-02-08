@@ -1,3 +1,4 @@
+function decode(code) { 
 const MORSE_TABLE = {
     '.-':     'a',
     '-...':   'b',
@@ -37,10 +38,19 @@ const MORSE_TABLE = {
     '-----':  '0',
 };
 
-function decode(expr) {
-    // write your solution here
-}
+    let words = code.split('**********');
+    let result = '';
 
+    for (let word of words) {
+        let letters = word.split('000');
+        for (let letter of letters) {
+            result += MORSE_TABLE[letter] || ' ';
+        }
+        result += ' ';
+    }
+
+    return result.trim();
+}
 module.exports = {
-    decode
+        decode
 }
