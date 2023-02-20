@@ -1,4 +1,4 @@
-function decode(code) { 
+ 
 const MORSE_TABLE = {
     '.-':     'a',
     '-...':   'b',
@@ -38,19 +38,19 @@ const MORSE_TABLE = {
     '-----':  '0',
 };
 
-    let words = code.split('**********');
-    let result = '';
-
-    for (let word of words) {
-        let letters = word.split('000');
-        for (let letter of letters) {
-            result += MORSE_TABLE[letter] || ' ';
-        }
-        result += ' ';
+function decode(expr) {
+    let result = "";
+    for (let i = 0; i < expr.length; i += 10) {
+      const letter = expr.slice(i, i + 10);
+      if (letter === "**********") {
+        result += " ";
+      } else {
+        const morse = letter.replace(/00/g, "").replace(/10/g, ".").replace(/11/g, "-");
+        result += MORSE_TABLE[morse];
+      }
     }
-
-    return result.trim();
-}
+    return result;
+  }
 module.exports = {
         decode
 }
